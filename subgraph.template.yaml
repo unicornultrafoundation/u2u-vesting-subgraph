@@ -6,7 +6,7 @@ dataSources:
     name: VestingFactory
     network: {{network}}
     source:
-      address: {{factory.address}}
+      address: "{{factory.address}}"
       abi: VestingFactory
       startBlock: {{factory.startBlock}}
     mapping:
