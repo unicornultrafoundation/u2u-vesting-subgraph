@@ -1,0 +1,61 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: VestingFactory
+    network: {{network}}
+    source:
+      address: {{factory.address}}
+      abi: VestingFactory
+      startBlock: {{factory.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - VestingPool
+        - Withdrawn
+      abis:
+        - name: VestingFactory
+          file: ./abis/Factory.json
+      eventHandlers:
+        - event: NewPool(address,(string,uint256,address,address,uint256,uint256,uint256))
+          handler: handleNewPool
+        - event: BeneficiaryAdded(address,address,uint256)
+          handler: handleUnlockedStake
+        - event: Paused(address)
+          handler: handleUpdatedSlashingRefundRatio
+        - event: Unpaused(address)
+          handler: handleWithdrawn
+      file: ./src/factory.ts
+templates:
+  - kind: ethereum/contract
+    name: VestingPool
+    network: {{network}}
+    source:
+      abi: VestingPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: ./src/pool.ts
+      entities:
+        - VestingPool
+        - UserInfo
+      abis:
+        - name: VestingFactory
+          file: ./abis/Factory.json
+        - name: VestingPool
+          file: ./abis/Pool.json
+      eventHandlers:
+        - event: BeneficiaryAdded(address,(uint256,bool,uint256,uint256,uint256,uint256))
+          handler: handleMint
+        - event: Initialized((uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))
+          handler: handleBurn
+        - event: Paused(address)
+          handler: handleSwap
+        - event: Released(address,uint256,uint256)
+          handler: handleTransfer
+        - event: Unpaused(address)
+          handler: handleSync

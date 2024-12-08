@@ -1,0 +1,10 @@
+node_modules
+generated
+build
+package-lock.json
+/subgraph.yaml
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/u2u-vesting-subgraph.iml
+/.idea/vcs.xml
