@@ -13,6 +13,6 @@ export function handleBeneficiaryAdded(e: BeneficiaryAdded): void {
   factoryBeneficiaryAdded(e);
 }
 
-export function handleWithdrawn(e: Withdrawn): void {
+export function handleWithdraw(e: Withdrawn): void {
   withdraw(e);
 }
