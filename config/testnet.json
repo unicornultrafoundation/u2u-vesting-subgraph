@@ -1,5 +1,5 @@
 {
-  "network": "u2u",
+  "network": "testnet",
   "factory": {
     "address": "0x9d4c2E691b99E98Fc28aa5577C5CD2497994b59a",
     "startBlock": 43709880
