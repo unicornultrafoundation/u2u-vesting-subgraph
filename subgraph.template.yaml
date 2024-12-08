@@ -23,11 +23,9 @@ dataSources:
         - event: NewPool(address,(string,uint256,address,address,uint256,uint256,uint256))
           handler: handleNewPool
         - event: BeneficiaryAdded(address,address,uint256)
-          handler: handleUnlockedStake
-        - event: Paused(address)
-          handler: handleUpdatedSlashingRefundRatio
-        - event: Unpaused(address)
-          handler: handleWithdrawn
+          handler: handleBeneficiaryAdded
+        - event: Withdrawn(address,uint256,address)
+          handler: handleWithdraw
       file: ./src/factory.ts
 templates:
   - kind: ethereum/contract
@@ -50,12 +48,8 @@ templates:
           file: ./abis/Pool.json
       eventHandlers:
         - event: BeneficiaryAdded(address,(uint256,bool,uint256,uint256,uint256,uint256))
-          handler: handleMint
+          handler: handleBeneficiaryAdded
         - event: Initialized((uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))
-          handler: handleBurn
-        - event: Paused(address)
-          handler: handleSwap
+          handler: handleInitialized
         - event: Released(address,uint256,uint256)
-          handler: handleTransfer
-        - event: Unpaused(address)
-          handler: handleSync
+          handler: handleReleased
