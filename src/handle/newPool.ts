@@ -15,8 +15,9 @@ export function newPool(e: NewPool): void {
   if (!vestingPool) {
     log.info("Create new pool with contract: {}", [vestingPoolID])
     vestingPool = new VestingPool(vestingPoolID);
-    vestingPool.save();
   }
+  vestingPool.name = e.params.infos.vestingTerm;
+  vestingPool.save();
 
   VestingPoolTemplate.create(e.params.id)
 }
