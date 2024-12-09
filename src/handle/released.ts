@@ -14,6 +14,11 @@ export function released(e: Released): void {
     return;
   }
 
+  vestingPool.totalReleasedAmount = vestingPool.totalReleasedAmount.plus(e.params.releasedAmount);
+  vestingPool.isClaimFirstUnlock = true;
+  vestingPool.claimedTime = e.params.releasedPeriods;
+
+
   let userId = e.params.beneficiary.toHexString();
   let userInfo = UserInfo.load(userId);
   if (!userInfo) {

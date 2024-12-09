@@ -17,7 +17,11 @@ export function newEmptyVestingPool(poolID: string): VestingPool {
   vestingPool.endTime = ZERO_BI;
   vestingPool.totalPoolCap = ZERO_BI;
   vestingPool.totalReleasedAmount = ZERO_BI;
+  vestingPool.isClaimFirstUnlock = false;
+  vestingPool.claimedTime = ZERO_BI;
   vestingPool.updatedAt = ZERO_BI;
+  vestingPool.updatedAt = ZERO_BI;
+
   return vestingPool;
 }
 
