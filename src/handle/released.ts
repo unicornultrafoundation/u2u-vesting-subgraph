@@ -26,6 +26,7 @@ export function released(e: Released): void {
 
   userPool.releasedAmount = userPool.releasedAmount.plus(e.params.releasedAmount);
   userPool.completedPeriods = e.params.releasedPeriods;
+  userPool.isClaimFirstUnlock = true;
 
 
   let userId = e.params.beneficiary.toHexString();
