@@ -40,7 +40,7 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
   //user.pools = user.pools?.push(userPool)
 
   userPool.totalAmount = e.params.user.totalAmount;
-  userPool.amountPerPeriod = e.params.user.totalAmount;
+  userPool.amountPerPeriod = e.params.user.amountPerPeriod;
   userPool.releasedAmount = e.params.user.releasedAmount;
   userPool.completedPeriods = e.params.user.completedPeriods;
   userPool.updatedAt = e.block.timestamp;
