@@ -16,7 +16,7 @@ export function withdraw(e: Withdrawn): void {
   let userPoolID = e.params.beneficiary.toHexString();
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
-    log.info("cannot withdraw from invalid user {}", [vestingPoolID]);
+    log.info("cannot withdraw from user pool {}", [vestingPoolID]);
     return;
   }
 

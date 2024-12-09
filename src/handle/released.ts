@@ -10,7 +10,7 @@ export function released(e: Released): void {
   let vestingPoolID = e.address.toHexString();
   let vestingPool = VestingPool.load(vestingPoolID);
   if (!vestingPool) {
-    log.info("cannot withdraw from invalid vesting pool {}", [vestingPoolID]);
+    log.info("cannot release from invalid vesting pool {}", [vestingPoolID]);
     return;
   }
 
@@ -20,7 +20,7 @@ export function released(e: Released): void {
   let userPoolID = e.address.toHexString();
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
-    log.info("cannot withdraw from invalid vesting pool {}", [vestingPoolID]);
+    log.info("cannot release from invalid user pool {}", [vestingPoolID]);
     return;
   }
 
@@ -31,7 +31,7 @@ export function released(e: Released): void {
   let userId = e.params.beneficiary.toHexString();
   let user = User.load(userId);
   if (!user) {
-    log.info("cannot withdraw from invalid user {}", [vestingPoolID]);
+    log.info("cannot release from invalid user {}", [vestingPoolID]);
     return;
   }
   user.totalClaimed = user.totalClaimed.plus(e.params.releasedAmount);
