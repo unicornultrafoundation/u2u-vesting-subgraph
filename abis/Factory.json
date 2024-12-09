@@ -35,6 +35,31 @@
       {
         "indexed": false,
         "internalType": "address",
+        "name": "poodAddr",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "beneficiary",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "removedAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "BeneficiaryRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
         "name": "id",
         "type": "address"
       },
@@ -515,6 +540,24 @@
       }
     ],
     "name": "pausePool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pooAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_beneficiary",
+        "type": "address"
+      }
+    ],
+    "name": "removeBeneficiary",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

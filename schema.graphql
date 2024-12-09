@@ -12,6 +12,7 @@ type VestingPool @entity {
   totalPoolCap: BigInt!
   totalReleasedAmount: BigInt!
   pools: [UserPool!] @derivedFrom(field: "vestingPool")
+  isPause: Boolean!
   updatedAt: BigInt!
 
 }
@@ -33,6 +34,7 @@ type UserPool @entity {
   releasedAmount: BigInt!
   completedPeriods: BigInt!
   isClaimFirstUnlock: Boolean!
+  isPause: Boolean!
   isEnable: Boolean!
   updatedAt: BigInt!
 }

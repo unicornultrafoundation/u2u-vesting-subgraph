@@ -1,20 +1,18 @@
-import { log} from "@graphprotocol/graph-ts"
-import {BeneficiaryAdded as FactoryBeneficiaryAdded} from "../../generated/VestingFactory/VestingFactory";
-import {BeneficiaryAdded as VestingPoolBeneficiaryAdded} from "../../generated/templates/VestingPool/VestingPool";
+import {log} from "@graphprotocol/graph-ts"
+import {BeneficiaryRemoved as FactoryBeneficiaryRemoved} from "../../generated/VestingFactory/VestingFactory";
+import {BeneficiaryRemoved as VestingPoolBeneficiaryRemoved} from "../../generated/templates/VestingPool/VestingPool";
 import {User, UserPool, VestingPool} from "../../generated/schema";
 import {newEmptyUser, newEmptyUserPool} from "../builder";
 import {concatID, ZERO_BI} from "../helper";
 
 
-export function factoryBeneficiaryAdded(e: FactoryBeneficiaryAdded): void {
+export function factoryBeneficiaryRemoved(e: FactoryBeneficiaryRemoved): void {
   log.info("[Factory]Beneficiary added with txHash: {}, block: {}", [e.transaction.hash.toHexString(), e.block.number.toString()])
 
 }
 
-export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): void {
-  log.info("[VestingPool]Beneficiary added with txHash: {}, block: {}", [e.transaction.hash.toHexString(), e.block.number.toString()])
-
-
+export function vestingPoolBeneficiaryRemoved(e: VestingPoolBeneficiaryRemoved): void {
+  log.info("[VestingPool]Beneficiary removed with txHash: {}, block: {}", [e.transaction.hash.toHexString(), e.block.number.toString()])
   let vestingPool = VestingPool.load(e.address.toHexString())
   if (!vestingPool) {
     log.info("Cannot add to non-exist pool at addr: {}", [e.address.toHexString()])
@@ -28,7 +26,6 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
   }
 
 
-
   let userPoolID = concatID(vestingPool.id, userID);
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
@@ -37,13 +34,12 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
 
   userPool.user = user.id;
 
-  userPool.totalAmount = e.params.user.totalAmount;
-  userPool.amountPerPeriod = e.params.user.amountPerPeriod;
-  userPool.releasedAmount = e.params.user.releasedAmount;
-  userPool.completedPeriods = e.params.user.completedPeriods;
+  //user.pools = user.pools?.push(userPool)
+
+  userPool.totalAmount = ZERO_BI;
   userPool.updatedAt = e.block.timestamp;
-  userPool.isEnable = true;
   userPool.vestingPool = vestingPool.id;
+  userPool.isEnable = false;
 
   vestingPool.save()
   userPool.save()
