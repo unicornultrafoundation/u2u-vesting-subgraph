@@ -9,7 +9,7 @@ export function initialized(e: Initialized): void {
   let vestingPoolID = e.address.toHexString();
   let vestingPool = VestingPool.load(vestingPoolID);
   if (!vestingPool) {
-    vestingPool = newPool(vestingPoolID);
+    vestingPool = newEmptyVestingPool(vestingPoolID);
   }
 
   vestingPool.startTime = e.params.info.startTime;
