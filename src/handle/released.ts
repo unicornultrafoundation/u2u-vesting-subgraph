@@ -17,7 +17,7 @@ export function released(e: Released): void {
   vestingPool.totalReleasedAmount = vestingPool.totalReleasedAmount.plus(e.params.releasedAmount);
 
 
-  let userPoolID = concatID(e.params.beneficiary.toHexString(), e.address.toHexString());
+  let userPoolID = concatID(vestingPool.name, e.params.beneficiary.toHexString());
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
     log.info("cannot release from invalid user pool {}", [vestingPoolID]);

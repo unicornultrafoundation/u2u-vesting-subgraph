@@ -14,7 +14,7 @@ export function withdraw(e: Withdrawn): void {
     return;
   }
 
-  let userPoolID = concatID(e.params.beneficiary.toHexString(), e.address.toHexString());
+  let userPoolID = concatID(vestingPool.name,e.params.beneficiary.toHexString());
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
     log.info("cannot withdraw from user pool {}", [vestingPoolID]);
