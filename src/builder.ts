@@ -1,4 +1,4 @@
-import {VestingPool} from "../generated/schema";
+import {UserInfo, VestingPool} from "../generated/schema";
 import {ZERO_BI} from "./helper";
 import {log} from "@graphprotocol/graph-ts";
 
@@ -19,4 +19,16 @@ export function newEmptyVestingPool(poolID: string): VestingPool {
   vestingPool.totalReleasedAmount = ZERO_BI;
   vestingPool.updatedAt = ZERO_BI;
   return vestingPool;
+}
+
+
+export function newEmptyUserInfo(userID: string): UserInfo {
+  log.info("Create new empty user info", [])
+  let userInfo = new UserInfo(userID)
+  userInfo.totalAmount = ZERO_BI;
+  userInfo.amountPerPeriod = ZERO_BI;
+  userInfo.releasedAmount = ZERO_BI;
+  userInfo.completedPeriods = ZERO_BI;
+  userInfo.updatedAt = ZERO_BI;
+  return userInfo;
 }

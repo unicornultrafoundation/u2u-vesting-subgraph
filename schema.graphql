@@ -11,6 +11,7 @@ type VestingPool @entity {
   endTime: BigInt!
   totalPoolCap: BigInt!
   totalReleasedAmount: BigInt!
+  user: UserInfo
   updatedAt: BigInt!
 }
 
