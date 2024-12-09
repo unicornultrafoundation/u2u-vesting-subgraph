@@ -22,6 +22,7 @@ export function released(e: Released): void {
   }
   userInfo.releasedAmount = userInfo.releasedAmount.plus(e.params.releasedAmount);
   userInfo.completedPeriods = userInfo.completedPeriods.plus(ONE_BI);
+  userInfo.updatedAt = e.block.timestamp;
 
   let releaseID = e.transaction.hash.toHexString();
   let releaseRecord = ReleaseRecord.load(releaseID);
