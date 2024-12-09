@@ -33,6 +33,7 @@ type UserPool @entity {
   releasedAmount: BigInt!
   completedPeriods: BigInt!
   isClaimFirstUnlock: Boolean!
+  isEnable: Boolean!
   updatedAt: BigInt!
 }
 

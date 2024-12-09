@@ -31,6 +31,7 @@ export function newEmptyUserPool(userPoolID: string): UserPool {
   userPool.releasedAmount = ZERO_BI;
   userPool.completedPeriods = ZERO_BI;
   userPool.isClaimFirstUnlock = false;
+  userPool.isEnable = true;
   userPool.updatedAt = ZERO_BI;
   return userPool;
 }
