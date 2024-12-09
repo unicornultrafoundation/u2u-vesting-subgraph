@@ -38,6 +38,7 @@ export function newEmptyUserPool(userPoolID: string): UserPool {
 export function newEmptyUser(userID: string): User {
   log.info("Create new empty user", [])
   let user = new User(userID)
+  user.totalClaimed = ZERO_BI;
   user.updatedAt = ZERO_BI;
   return user;
 }
