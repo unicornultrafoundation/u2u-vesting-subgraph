@@ -18,7 +18,6 @@ export function newEmptyVestingPool(poolID: string): VestingPool {
   vestingPool.totalPoolCap = ZERO_BI;
   vestingPool.totalReleasedAmount = ZERO_BI;
   vestingPool.updatedAt = ZERO_BI;
-  vestingPool.updatedAt = ZERO_BI;
 
   return vestingPool;
 }
