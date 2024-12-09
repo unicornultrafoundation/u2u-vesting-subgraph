@@ -1,11 +1,11 @@
 type VestingPool @entity {
   id: ID!
   name: String!
-  startTime: BigInt! #Total validator self staked amount
-  firstUnlockPercentage: BigInt! #Total delegator staked amount
-  lockDuration: BigInt! #Total staked amount
-  vestingDuration: BigInt! #Number of validator on network
-  vestingPeriods: BigInt! #Number of delegator already stake
+  startTime: BigInt!
+  firstUnlockPercentage: BigInt!
+  lockDuration: BigInt!
+  vestingDuration: BigInt!
+  vestingPeriods: BigInt!
   period: BigInt!
   periodUnlockPercentage: BigInt!
   endTime: BigInt!
@@ -16,7 +16,7 @@ type VestingPool @entity {
 }
 
 type UserInfo @entity {
-  id: ID!  #User addr
+  id: ID!  # [addr|pool]
   totalAmount: BigInt!
   amountPerPeriod: BigInt!
   releasedAmount: BigInt!
@@ -25,28 +25,21 @@ type UserInfo @entity {
 }
 
 type WithdrawnRequest @entity {
-  id: ID! #ID={txHash}-{validatorId}-{wrID}
+  id: ID!
   hash: Bytes!
-  delegatorAddress: Bytes! #Delegator request withdraw
-  validatorId: BigInt!
-  wrID: BigInt!
-  time: BigInt!
-  unbondingAmount: BigInt!
-  withdrawalAmount: BigInt!
-  withdrawHash: Bytes!
+  vestingPool: VestingPool!
+  user: UserInfo!
+  amount: BigInt!
   withdrawTime: BigInt!
 }
 
 
 type ReleaseRecord @entity {
-  id: ID! #ID={txHash}-{validatorId}-{wrID}
+  id: ID!
   hash: Bytes!
-  delegatorAddress: Bytes! #Delegator request withdraw
-  validatorId: BigInt!
-  wrID: BigInt!
-  time: BigInt!
-  unbondingAmount: BigInt!
-  withdrawalAmount: BigInt!
-  withdrawHash: Bytes!
-  withdrawTime: BigInt!
+  vestingPool: VestingPool!
+  user: UserInfo! #Delegator request withdraw
+  amount: BigInt!
+  releasedPeriods: BigInt!
+  releaseTime: BigInt!
 }
