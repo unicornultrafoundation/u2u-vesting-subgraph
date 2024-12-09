@@ -1,6 +1,7 @@
 import {Withdrawn} from "../../generated/VestingFactory/VestingFactory";
 import {log} from "@graphprotocol/graph-ts";
 import {UserPool, User, VestingPool, WithdrawnRequest} from "../../generated/schema";
+import {concatID} from "../helper";
 
 
 export function withdraw(e: Withdrawn): void {
@@ -13,7 +14,7 @@ export function withdraw(e: Withdrawn): void {
     return;
   }
 
-  let userPoolID = e.params.beneficiary.toHexString();
+  let userPoolID = concatID(e.params.beneficiary.toHexString(), e.address.toHexString());
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
     log.info("cannot withdraw from user pool {}", [vestingPoolID]);

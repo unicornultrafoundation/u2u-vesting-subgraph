@@ -3,7 +3,7 @@ import {BeneficiaryAdded as FactoryBeneficiaryAdded} from "../../generated/Vesti
 import {BeneficiaryAdded as VestingPoolBeneficiaryAdded} from "../../generated/templates/VestingPool/VestingPool";
 import {User, UserPool, VestingPool} from "../../generated/schema";
 import {newEmptyUser, newEmptyUserPool} from "../builder";
-import {ZERO_BI} from "../helper";
+import {concatID, ZERO_BI} from "../helper";
 
 
 export function factoryBeneficiaryAdded(e: FactoryBeneficiaryAdded): void {
@@ -29,7 +29,7 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
 
 
 
-  let userPoolID = e.address.toHexString();
+  let userPoolID = concatID(userID, e.address.toHexString());
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
     userPool = newEmptyUserPool(userPoolID);

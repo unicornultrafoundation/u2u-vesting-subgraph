@@ -1,7 +1,7 @@
 import {Released} from "../../generated/templates/VestingPool/VestingPool";
 import {log} from "@graphprotocol/graph-ts";
 import {ReleaseRecord, User, UserPool, VestingPool} from "../../generated/schema";
-import {ONE_BI} from "../helper";
+import {concatID, ONE_BI} from "../helper";
 
 
 export function released(e: Released): void {
@@ -17,7 +17,7 @@ export function released(e: Released): void {
   vestingPool.totalReleasedAmount = vestingPool.totalReleasedAmount.plus(e.params.releasedAmount);
 
 
-  let userPoolID = e.address.toHexString();
+  let userPoolID = concatID(e.params.beneficiary.toHexString(), e.address.toHexString());
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
     log.info("cannot release from invalid user pool {}", [vestingPoolID]);
