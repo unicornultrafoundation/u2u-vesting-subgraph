@@ -2,6 +2,7 @@ import { log, BigInt } from "@graphprotocol/graph-ts"
 import {NewPool} from "../../generated/VestingFactory/VestingFactory";
 import {VestingPool as VestingPoolTemplate} from "../../generated/templates";
 import {VestingPool} from "../../generated/schema";
+import {newEmptyVestingPool} from "../builder";
 
 /**
  * Claimed rewards event handle
@@ -14,7 +15,7 @@ export function newPool(e: NewPool): void {
   let vestingPool = VestingPool.load(vestingPoolID);
   if (!vestingPool) {
     log.info("Create new pool with contract: {}", [vestingPoolID])
-    vestingPool = new VestingPool(vestingPoolID);
+    vestingPool = newEmptyVestingPool(vestingPoolID);
   }
   vestingPool.name = e.params.infos.vestingTerm;
   vestingPool.save();

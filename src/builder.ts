@@ -3,7 +3,7 @@ import {ZERO_BI} from "./helper";
 import {log} from "@graphprotocol/graph-ts";
 
 
-export function newPool(poolID: string): VestingPool {
+export function newEmptyVestingPool(poolID: string): VestingPool {
   log.info("Create new empty vesting pool", [])
   let vestingPool = new VestingPool(poolID)
   vestingPool.name = "unknown pool"

@@ -1,7 +1,7 @@
 import { log, BigInt } from "@graphprotocol/graph-ts"
 import {Initialized} from "../../generated/templates/VestingPool/VestingPool";
 import {VestingPool} from "../../generated/schema";
-import {newPool} from "../builder";
+import {newEmptyVestingPool} from "../builder";
 
 
 export function initialized(e: Initialized): void {
