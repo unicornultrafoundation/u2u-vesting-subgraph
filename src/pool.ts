@@ -11,11 +11,9 @@ import {vestingPoolBeneficiaryRemoved} from "./handle/beneficiaryRemoved";
 import {vestingPoolPaused} from "./handle/paused";
 import {vestingPoolUnpaused} from "./handle/unpaused";
 
-
 export function handleInitialized(e: Initialized): void {
   initialized(e);
 }
-
 
 export function handleReleased(e: Released): void {
   released(e);
