@@ -14,8 +14,8 @@ export function withdraw(e: Withdrawn): void {
   }
 
   let userPoolID = e.params.beneficiary.toHexString();
-  let userInfo = UserPool.load(userPoolID);
-  if (!userInfo) {
+  let userPool = UserPool.load(userPoolID);
+  if (!userPool) {
     log.info("cannot withdraw from invalid user {}", [vestingPoolID]);
     return;
   }
@@ -25,13 +25,13 @@ export function withdraw(e: Withdrawn): void {
   if (!withdrawRequest) {
     withdrawRequest = new WithdrawnRequest(withdrawID);
     withdrawRequest.hash = e.transaction.hash;
-    // withdrawRequest.vestingPool = vestingPool.id;
-    withdrawRequest.user = userInfo.id;
+    withdrawRequest.userPool = userPool.id;
+    withdrawRequest.user = userPool.id;
     withdrawRequest.amount = e.params.amount;
     withdrawRequest.withdrawTime = e.block.timestamp;
   }
 
   vestingPool.save()
-  userInfo.save()
+  userPool.save()
   withdrawRequest.save();
 }
