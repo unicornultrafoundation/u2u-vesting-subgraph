@@ -15,6 +15,7 @@ export function released(e: Released): void {
   }
 
   vestingPool.totalReleasedAmount = vestingPool.totalReleasedAmount.plus(e.params.releasedAmount);
+  vestingPool.save();
 
 
   let userPoolID = concatID(vestingPool.name, e.params.beneficiary.toHexString());
@@ -50,7 +51,7 @@ export function released(e: Released): void {
     releaseRecord.releaseTime = e.block.timestamp;
   }
 
-  vestingPool.save();
+
   userPool.save();
   user.save();
   releaseRecord.save();
