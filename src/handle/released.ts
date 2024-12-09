@@ -49,6 +49,7 @@ export function released(e: Released): void {
     releaseRecord.releaseTime = e.block.timestamp;
   }
 
+  vestingPool.save();
   userPool.save();
   user.save();
   releaseRecord.save();

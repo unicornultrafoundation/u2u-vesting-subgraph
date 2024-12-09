@@ -48,4 +48,5 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
 
   vestingPool.save()
   userPool.save()
+  user.save()
 }
