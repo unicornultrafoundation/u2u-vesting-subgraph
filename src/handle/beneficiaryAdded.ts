@@ -29,7 +29,7 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
 
 
 
-  let userPoolID = e.params.beneficiary.toHexString();
+  let userPoolID = e.address.toHexString();
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
     userPool = newEmptyUserPool(userPoolID);
