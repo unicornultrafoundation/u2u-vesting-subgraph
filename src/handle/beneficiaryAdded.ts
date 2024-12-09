@@ -35,7 +35,7 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
     userPool = newEmptyUserPool(userPoolID);
   }
 
-
+  userPool.user = user.id;
 
   //user.pools = user.pools?.push(userPool)
 
