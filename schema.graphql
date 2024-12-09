@@ -11,26 +11,36 @@ type VestingPool @entity {
   endTime: BigInt!
   totalPoolCap: BigInt!
   totalReleasedAmount: BigInt!
-  claimedTime: BigInt!
-  isClaimFirstUnlock: Boolean!
-  user: UserInfo
+  pools: [UserPool!] @derivedFrom(field: "vestingPool")
+  updatedAt: BigInt!
+
+}
+
+type User @entity {
+  id: ID!  # [addr|pool]
+  pools: [UserPool!] @derivedFrom(field: "user")
+  totalClaimed: BigInt!
   updatedAt: BigInt!
 }
 
-type UserInfo @entity {
+
+type UserPool @entity {
   id: ID!  # [addr|pool]
+  user: User!
+  vestingPool: VestingPool!
   totalAmount: BigInt!
   amountPerPeriod: BigInt!
   releasedAmount: BigInt!
   completedPeriods: BigInt!
+  isClaimFirstUnlock: Boolean!
   updatedAt: BigInt!
 }
 
 type WithdrawnRequest @entity {
   id: ID!
   hash: Bytes!
-  vestingPool: VestingPool!
-  user: UserInfo!
+  userPool: UserPool!
+  user: User!
   amount: BigInt!
   withdrawTime: BigInt!
 }
@@ -39,8 +49,8 @@ type WithdrawnRequest @entity {
 type ReleaseRecord @entity {
   id: ID!
   hash: Bytes!
-  vestingPool: VestingPool!
-  user: UserInfo! #Delegator request withdraw
+  userPool: UserPool!
+  user: User! #Delegator request withdraw
   amount: BigInt!
   releasedPeriods: BigInt!
   releaseTime: BigInt!

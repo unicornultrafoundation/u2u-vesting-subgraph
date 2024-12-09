@@ -1,6 +1,6 @@
 import {Withdrawn} from "../../generated/VestingFactory/VestingFactory";
 import {log} from "@graphprotocol/graph-ts";
-import {UserInfo, VestingPool, WithdrawnRequest} from "../../generated/schema";
+import {UserPool, User, VestingPool, WithdrawnRequest} from "../../generated/schema";
 
 
 export function withdraw(e: Withdrawn): void {
@@ -13,8 +13,8 @@ export function withdraw(e: Withdrawn): void {
     return;
   }
 
-  let userId = e.params.beneficiary.toHexString();
-  let userInfo = UserInfo.load(userId);
+  let userPoolID = e.params.beneficiary.toHexString();
+  let userInfo = UserPool.load(userPoolID);
   if (!userInfo) {
     log.info("cannot withdraw from invalid user {}", [vestingPoolID]);
     return;
@@ -25,7 +25,7 @@ export function withdraw(e: Withdrawn): void {
   if (!withdrawRequest) {
     withdrawRequest = new WithdrawnRequest(withdrawID);
     withdrawRequest.hash = e.transaction.hash;
-    withdrawRequest.vestingPool = vestingPool.id;
+    // withdrawRequest.vestingPool = vestingPool.id;
     withdrawRequest.user = userInfo.id;
     withdrawRequest.amount = e.params.amount;
     withdrawRequest.withdrawTime = e.block.timestamp;
