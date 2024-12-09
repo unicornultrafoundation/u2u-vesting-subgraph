@@ -29,7 +29,7 @@ export function vestingPoolBeneficiaryAdded(e: VestingPoolBeneficiaryAdded): voi
 
 
 
-  let userPoolID = concatID(vestingPool.name,userID);
+  let userPoolID = concatID(vestingPool.id, userID);
   let userPool = UserPool.load(userPoolID);
   if (!userPool) {
     userPool = newEmptyUserPool(userPoolID);
