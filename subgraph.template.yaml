@@ -7,7 +7,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{wrapper.address}}"
-      abi: VestingFactory
+      abi: VestingPool
       startBlock: {{wrapper.startBlock}}
     mapping:
       kind: ethereum/events
