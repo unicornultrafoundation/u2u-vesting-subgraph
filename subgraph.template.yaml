@@ -22,7 +22,7 @@ dataSources:
       eventHandlers:
         - event: Released(address,address,uint256,uint256)
           handler: handleWrapperReleased
-      file: ./src/pool.ts
+      file: ./src/wrapper.ts
   - kind: ethereum
     name: VestingFactory
     network: {{network}}
