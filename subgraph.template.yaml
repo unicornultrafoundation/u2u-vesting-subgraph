@@ -3,6 +3,27 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
+    name: VestingWrapper
+    network: {{network}}
+    source:
+      address: "{{wrapper.address}}"
+      abi: VestingFactory
+      startBlock: {{wrapper.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - VestingPool
+        - Withdrawn
+      abis:
+        - name: VestingPool
+          file: ./abis/Pool.json
+      eventHandlers:
+        - event: Released(address,uint256,uint256)
+          handler: handleReleased
+      file: ./src/pool.ts
+  - kind: ethereum
     name: VestingFactory
     network: {{network}}
     source:
