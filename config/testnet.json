@@ -1,7 +1,7 @@
 {
   "network": "testnet",
   "factory": {
-    "address": "0x7Df3E84F2531b48948fCd39D16166c4280d8b703",
-    "startBlock": 47713259
+    "address": "0xc061a902b776326BF03B425593cA0ac35d11e897",
+    "startBlock": 47723945
   }
 }
