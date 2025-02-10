@@ -3,5 +3,9 @@
   "factory": {
     "address": "0xC493D168e4c135589eaa9b8AA10Dd8b49A1E8380",
     "startBlock": 22333153
+  },
+  "wrapper": {
+    "address": "0xfDdb7DE98E777B001475e6d7486d98de63E4B621",
+    "startBlock": 25408430
   }
 }
