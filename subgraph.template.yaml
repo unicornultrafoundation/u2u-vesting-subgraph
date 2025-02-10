@@ -7,7 +7,7 @@ dataSources:
     network: {{network}}
     source:
       address: "{{wrapper.address}}"
-      abi: VestingPool
+      abi: VestingWrapper
       startBlock: {{wrapper.startBlock}}
     mapping:
       kind: ethereum/events
@@ -17,11 +17,11 @@ dataSources:
         - VestingPool
         - Withdrawn
       abis:
-        - name: VestingPool
-          file: ./abis/Pool.json
+        - name: VestingWrapper
+          file: ./abis/Wrapper.json
       eventHandlers:
-        - event: Released(address,uint256,uint256)
-          handler: handleReleased
+        - event: Released(address,address,uint256,uint256)
+          handler: handleWrapperReleased
       file: ./src/pool.ts
   - kind: ethereum
     name: VestingFactory
