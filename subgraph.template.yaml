@@ -24,11 +24,11 @@ dataSources:
           handler: handleWrapperReleased
       file: ./src/wrapper.ts
   - kind: ethereum
-    name: VestingWrapper
+    name: VestingWrapperBL
     network: {{network}}
     source:
       address: "{{wrapper-bl.address}}"
-      abi: VestingWrapper
+      abi: VestingWrapperBL
       startBlock: {{wrapper-bl.startBlock}}
     mapping:
       kind: ethereum/events
@@ -38,8 +38,8 @@ dataSources:
         - VestingPool
         - Withdrawn
       abis:
-        - name: VestingWrapper
-          file: ./abis/Wrapper.json
+        - name: VestingWrapperBL
+          file: ./abis/WrapperBL.json
       eventHandlers:
         - event: Released(address,address,uint256,uint256)
           handler: handleWrapperReleased
