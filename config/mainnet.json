@@ -7,5 +7,9 @@
   "wrapper": {
     "address": "0x7a96c0D03467E12065B251B0f12fbDBa4A677e26",
     "startBlock": 25408820
+  },
+  "wrapper-bl": {
+    "address": "0x1EcDc94C6602f7Ca2b37b42aC608E62A4A3EC56C",
+    "startBlock": 27221016
   }
 }
